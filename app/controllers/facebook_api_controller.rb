@@ -1,8 +1,8 @@
 class FacebookApiController < ApplicationController
 
   def webhook
-    if accepted_params[:hub_verify_token] == ENV['FACEBOOK_HUB_VERIFY_TOKEN']
-      render text: accepted_params[:hub_verify_challenge]
+    if accepted_params[:'hub.verify_token'] == ENV['FACEBOOK_HUB_VERIFY_TOKEN']
+      render text: accepted_params[:'hub.challenge']
     else
       render text: ''
     end
@@ -11,7 +11,7 @@ class FacebookApiController < ApplicationController
   private
 
   def accepted_params
-    params.permit(:hub_verify_challenge, :hub_verify_token)
+    params.permit(:'hub.challenge', :'hub.verify_token')
   end
 
 end
