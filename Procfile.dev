@@ -1,0 +1,4 @@
+web: bundle exec puma -C ./config/puma.rb
+sidekiq: bundle exec sidekiq -C ./config/sidekiq.yml -r ./config/boot.rb
+redis: redis-server
+mail: ruby -rbundler/setup -e "Bundler.clean_exec('mailcatcher', '--foreground')" 
