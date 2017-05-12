@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   root to: 'home#index'
+
+  get '/facebook_api/webhook' => 'facebook_api#webhook'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
