@@ -8,6 +8,10 @@ class FacebookApiController < ApplicationController
     end
   end
 
+  def incoming_webhook
+    render text: ''
+  end
+
   private
 
   def accepted_params

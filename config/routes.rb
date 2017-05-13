@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   get '/facebook_api/webhook' => 'facebook_api#webhook'
+  post '/facebook_api/webhook' => 'facebook_api#incoming_webhook'
+
+  get '/auth/facebook/callback' => 'users#facebook_auth_success'
+
+  resources :pages
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

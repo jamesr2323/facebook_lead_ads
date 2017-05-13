@@ -55,3 +55,6 @@ gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resour
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'puma'
+
+gem 'omniauth-facebook'
+gem 'koala'

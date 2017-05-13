@@ -1,0 +1,6 @@
+<h1>Facebook Lead Ads</h1>
+<% if current_user %>
+  <p>To set up your Facebook Lead Ads, please allow this website to access your pages and manage your ads on your behalf. <%= link_to 'Authorise on Facebook', '/auth/facebook' %>.
+<% else %>
+  <p class="lead">Receive your Facebook Lead Ads in real time as webhooks. Simples! To start syncing your Facebook Leads create an account.</p>
+<% end %>
