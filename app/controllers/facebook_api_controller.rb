@@ -11,14 +11,25 @@ class FacebookApiController < ApplicationController
   end
 
   def incoming_webhook
-    p params
-    render text: ''
-  end
 
-  private
+    page_id = params['entry'].first['id']
+    page = Page.find_by(facebook_id: page_id.to_i)
 
-  def accepted_params
-    params.permit(:'hub.challenge', :'hub.verify_token')
+    params['entry'].first['changes'].each do |leadgen|
+      data = leadgen['value']
+
+      # get form
+      graph = Koala::Facebook::API.new(page.access_token)
+      form_data = graph.get_object(data['form_id'])
+      leadgen_data = graph.get_object(data['leadgen_id'])
+      leadgen_data['field_data'] = leadgen_data['field_data'].map do |field|
+        [field['name'], field['values'][0]]
+      end.to_h
+      final_payload = data.merge({form: form_data, lead: leadgen_data})
+      HTTPClient.post page.webhook_url, final_payload
+    end
+
+    render text: 'ok'
   end
 
 end

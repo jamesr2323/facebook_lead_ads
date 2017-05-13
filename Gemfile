@@ -58,3 +58,4 @@ gem 'puma'
 
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'httpclient'
